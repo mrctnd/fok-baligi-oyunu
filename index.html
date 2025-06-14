@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🦭 Büyülü Fok Dünyası 🦭</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(
+          180deg,
+          #87ceeb 0%,
+          #4682b4 30%,
+          #2e8b57 60%,
+          #191970 100%
+        );
+        overflow: hidden;
+        font-family: "Comic Sans MS", cursive;
+        cursor: crosshair;
+      }
+
+      .ocean {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .seaweed {
+        position: absolute;
+        bottom: 0;
+        width: 8px;
+        background: linear-gradient(to top, #228b22, #32cd32);
+        border-radius: 4px;
+        animation: seaweedSway 3s ease-in-out infinite;
+        z-index: 1;
+      }
+
+      @keyframes seaweedSway {
+        0%,
+        100% {
+          transform: rotate(-5deg);
+        }
+        50% {
+          transform: rotate(5deg);
+        }
+      }
+
+      .coral {
+        position: absolute;
+        bottom: 0;
+        width: 40px;
+        height: 30px;
+        background: radial-gradient(circle, #ff6347, #ff4500);
+        border-radius: 50% 50% 0 0;
+        z-index: 1;
+      }
+
+      .coral::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 10px;
+        width: 20px;
+        height: 20px;
+        background: radial-gradient(circle, #ff69b4, #ff1493);
+        border-radius: 50%;
+      }
+
+      .bubble {
+        position: absolute;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.9) 0%,
+          rgba(255, 255, 255, 0.4) 50%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
+        border-radius: 50%;
+        pointer-events: none;
+        animation: bubbleUp 4s linear infinite;
+        box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
+      }
+
+      @keyframes bubbleUp {
+        0% {
+          transform: translateY(100vh) scale(0) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) scale(1.2) rotate(360deg);
+          opacity: 0;
+        }
+      }      .seal {
+        position: absolute;
+        width: 160px; /* 130px'den 160px'e artırdım */
+        height: 110px; /* 90px'den 110px'e artırdım */
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        
+        /* Mobil dokunma için optimize edilmiş alan */
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
+
+      .seal:hover {
+        transform: scale(1.15) rotate(3deg);
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4)) brightness(1.1);
+      }
+
+      .seal.happy {
+        animation: sealHappy 0.6s ease-in-out;
+      }
+
+      @keyframes sealHappy {
+        0%,
+        100% {
+          transform: scale(1) rotate(0deg);
+        }
+        25% {
+          transform: scale(1.2) rotate(-10deg);
+        }
+        75% {
+          transform: scale(1.2) rotate(10deg);
+        }
+      }
+      .seal-body {
+        width: 160px; /* 130px'den 160px'e artırdım */
+        height: 80px; /* 65px'den 80px'e artırdım */
+        background: linear-gradient(
+          135deg,
+          #696969 0%,
+          #a9a9a9 50%,
+          #c0c0c0 100%
+        );
+        border-radius: 96px 96px 40px 40px; /* Orantılı artırdım */
+        position: relative;
+        box-shadow: inset 0 -13px 26px rgba(0, 0, 0, 0.2); /* Gölgeyi orantılı artırdım */
+      }
+      .seal-spots {
+        position: absolute;
+        top: 16px; /* Orantılı artırdım */
+        left: 32px; /* Orantılı artırdım */
+        width: 96px; /* 78px'den 96px'e artırdım */
+        height: 48px; /* 39px'dan 48px'e artırdım */
+      }
+
+      .spot {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+      }
+      .spot:nth-child(1) {
+        width: 12px; /* 10px'dan 12px'e artırdım */
+        height: 10px; /* 8px'den 10px'a artırdım */
+        top: 7px;
+        left: 16px; /* Orantılı ayarladım */
+      }
+      .spot:nth-child(2) {
+        width: 10px; /* 8px'den 10px'a artırdım */
+        height: 12px; /* 10px'dan 12px'e artırdım */
+        top: 23px; /* Orantılı ayarladım */
+        left: 39px; /* Orantılı ayarladım */
+      }
+      .spot:nth-child(3) {
+        width: 8px; /* 6px'dan 8px'e artırdım */
+        height: 8px; /* 6px'dan 8px'e artırdım */
+        top: 12px;
+        left: 64px; /* Orantılı ayarladım */
+      }
+      .spot:nth-child(4) {
+        width: 11px; /* 9px'dan 11px'e artırdım */
+        height: 8px; /* 6px'dan 8px'e artırdım */
+        top: 32px; /* Orantılı ayarladım */
+        left: 7px;
+      }
+      .seal-head {
+        width: 70px; /* 58px'den 70px'e artırdım */
+        height: 55px; /* 45px'den 55px'e artırdım */
+        background: linear-gradient(
+          135deg,
+          #696969 0%,
+          #a9a9a9 50%,
+          #c0c0c0 100%
+        );
+        border-radius: 50%;
+        position: absolute;
+        top: -28px; /* Orantılı ayarladım */
+        left: -23px; /* Orantılı ayarladım */
+        box-shadow: inset 0 -7px 16px rgba(0, 0, 0, 0.2); /* Gölgeyi orantılı artırdım */
+      }
+      .seal-eyes {
+        position: absolute;
+        top: 8px; /* Daha yukarı taşıdım */
+        left: 16px; /* Daha merkeze taşıdım */
+      }
+      .seal-eye {
+        width: 12px; /* Küçülttüm */
+        height: 12px; /* Küçülttüm */
+        background: radial-gradient(circle at 30% 30%, #333 0%, #000 100%);
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px; /* Gözler arası mesafeyi daha da azalttım */
+        position: relative;
+        animation: blink 4s infinite;
+      }
+      .seal-eye::after {
+        content: "";
+        width: 3px; /* Küçülttüm */
+        height: 3px; /* Küçülttüm */
+        background: radial-gradient(
+          circle,
+          #fff 0%,
+          rgba(255, 255, 255, 0.8) 100%
+        );
+        border-radius: 50%;
+        position: absolute;
+        top: 1px; /* Orantılı ayarladım */
+        left: 1px; /* Orantılı ayarladım */
+      }
+
+      @keyframes blink {
+        0%,
+        90%,
+        100% {
+          transform: scaleY(1);
+        }
+        95% {
+          transform: scaleY(0.1);
+        }
+      }
+      .seal-nose {
+        width: 8px;
+        height: 6px;
+        background: linear-gradient(45deg, #000, #333);
+        border-radius: 50%;
+        position: absolute;
+        top: 28px; /* Gözlerden biraz aşağıda */
+        left: 29px; /* Kafanın ortasına yakın */
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+      }
+      .seal-mouth {
+        position: absolute;
+        top: 40px; /* Burundan hemen sonra */
+        left: 25px; /* Burunla hizalı */
+        width: 16px;
+        height: 8px;
+        border: 3px solid #333;
+        border-top: none;
+        border-radius: 0 0 16px 16px;
+      }
+      .seal-whiskers {
+        position: absolute;
+        top: 34px; /* Burun seviyesinde */
+        left: 16px; /* Kafanın sol kenarından başla */
+      }
+
+      .whisker {
+        width: 12px;
+        height: 1px;
+        background: linear-gradient(to right, #333, transparent);
+        position: absolute;
+        transform-origin: left;
+        animation: whiskerTwitch 3s ease-in-out infinite;
+      }
+
+      @keyframes whiskerTwitch {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(5deg);
+        }
+      }
+
+      .whisker:nth-child(1) {
+        top: -3px;
+        transform: rotate(-15deg);
+        animation-delay: 0s;
+      }
+      .whisker:nth-child(2) {
+        top: 0px;
+        animation-delay: 0.5s;
+      }
+      .whisker:nth-child(3) {
+        top: 3px;
+        transform: rotate(15deg);
+        animation-delay: 1s;
+      }
+      .whisker:nth-child(4) {
+        top: -3px;
+        left: 25px;
+        transform: rotate(15deg);
+        animation-delay: 1.5s;
+      }
+      .whisker:nth-child(5) {
+        top: 0px;
+        left: 25px;
+        animation-delay: 2s;
+      }
+      .whisker:nth-child(6) {
+        top: 3px;
+        left: 25px;
+        transform: rotate(-15deg);
+        animation-delay: 2.5s;
+      }
+      .seal-flippers {
+        position: absolute;
+        top: 23px; /* Orantılı artırdım */
+        left: 120px; /* 97px'den 120px'e artırdım */
+      }
+
+      .flipper {
+        width: 48px; /* 39px'dan 48px'e artırdım */
+        height: 24px; /* 19px'dan 24px'e artırdım */
+        background: linear-gradient(135deg, #696969, #a9a9a9);
+        border-radius: 50%;
+        position: absolute;
+        animation: flipperWave 2s ease-in-out infinite;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Gölgeyi büyüttüm */
+      }
+
+      .flipper:nth-child(1) {
+        top: -12px; /* Orantılı ayarladım */
+        animation-delay: 0s;
+      }
+      .flipper:nth-child(2) {
+        top: 18px; /* Orantılı ayarladım */
+        animation-delay: 0.3s;
+      } /* Orantılı ayarladım */
+
+      @keyframes flipperWave {
+        0%,
+        100% {
+          transform: rotate(0deg) scale(1);
+        }
+        50% {
+          transform: rotate(20deg) scale(1.05);
+        }
+      }
+      .seal-tail {
+        position: absolute;
+        top: 55px; /* 45px'den 55px'e artırdım */
+        left: 135px; /* 110px'dan 135px'e artırdım */
+        width: 40px; /* 32px'den 40px'a artırdım */
+        height: 32px; /* 26px'dan 32px'e artırdım */
+        background: linear-gradient(135deg, #696969, #a9a9a9);
+        clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+        animation: tailWag 1.5s ease-in-out infinite;
+      }
+
+      @keyframes tailWag {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(15deg);
+        }
+      }
+
+      @keyframes sealSwim {
+        0% {
+          transform: translateX(-150px) translateY(0px) rotate(0deg);
+        }
+        20% {
+          transform: translateX(20vw) translateY(-30px) rotate(8deg);
+        }
+        40% {
+          transform: translateX(40vw) translateY(15px) rotate(-5deg);
+        }
+        60% {
+          transform: translateX(60vw) translateY(-20px) rotate(10deg);
+        }
+        80% {
+          transform: translateX(80vw) translateY(10px) rotate(-3deg);
+        }
+        100% {
+          transform: translateX(calc(100vw + 150px)) translateY(-10px)
+            rotate(0deg);
+        }
+      }
+
+      .fish {
+        position: absolute;
+        width: 35px;
+        height: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 5;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      }
+
+      .fish:hover {
+        transform: scale(1.2) rotate(5deg);
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)) brightness(1.2);
+      }
+
+      .fish-body {
+        width: 35px;
+        height: 25px;
+        background: linear-gradient(45deg, #ffd700, #ffa500, #ff8c00);
+        border-radius: 50%;
+        position: relative;
+        animation: fishWiggle 2s ease-in-out infinite;
+      }
+
+      @keyframes fishWiggle {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(2deg);
+        }
+        75% {
+          transform: rotate(-2deg);
+        }
+      }
+
+      .fish-tail {
+        position: absolute;
+        top: 8px;
+        right: -8px;
+        width: 0;
+        height: 0;
+        border-left: 12px solid #ff8c00;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        animation: tailSwish 1s ease-in-out infinite;
+      }
+
+      @keyframes tailSwish {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(10deg);
+        }
+      }
+
+      .fish-eye {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        width: 6px;
+        height: 6px;
+        background: radial-gradient(circle at 30% 30%, #fff, #000);
+        border-radius: 50%;
+      }
+
+      .fish-fin {
+        position: absolute;
+        top: 5px;
+        left: 20px;
+        width: 8px;
+        height: 12px;
+        background: linear-gradient(45deg, #ffa500, #ff8c00);
+        border-radius: 50%;
+        animation: finWave 1.5s ease-in-out infinite;
+      }
+
+      @keyframes finWave {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(-15deg);
+        }
+      }
+
+      @keyframes fishSwim {
+        0% {
+          transform: translateX(100vw) translateY(0px) rotate(0deg);
+        }
+        25% {
+          transform: translateX(75vw) translateY(-10px) rotate(-5deg);
+        }
+        50% {
+          transform: translateX(50vw) translateY(20px) rotate(5deg);
+        }
+        75% {
+          transform: translateX(25vw) translateY(-15px) rotate(-3deg);
+        }
+        100% {
+          transform: translateX(-50px) translateY(10px) rotate(0deg);
+        }
+      }
+
+      .jellyfish {
+        position: absolute;
+        width: 60px;
+        height: 80px;
+        cursor: pointer;
+        z-index: 8;
+        animation: jellyfishFloat 6s ease-in-out infinite;
+      }
+
+      .jellyfish-body {
+        width: 60px;
+        height: 40px;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 192, 203, 0.8),
+          rgba(255, 105, 180, 0.6)
+        );
+        border-radius: 50%;
+        position: relative;
+        animation: jellyfishPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes jellyfishPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      .jellyfish-tentacle {
+        position: absolute;
+        top: 35px;
+        width: 3px;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 105, 180, 0.8),
+          rgba(255, 105, 180, 0.3)
+        );
+        border-radius: 2px;
+        animation: tentacleWave 3s ease-in-out infinite;
+      }
+
+      @keyframes tentacleWave {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        33% {
+          transform: rotate(10deg);
+        }
+        66% {
+          transform: rotate(-10deg);
+        }
+      }
+
+      .jellyfish-tentacle:nth-child(1) {
+        left: 15px;
+        height: 40px;
+        animation-delay: 0s;
+      }
+      .jellyfish-tentacle:nth-child(2) {
+        left: 25px;
+        height: 45px;
+        animation-delay: 0.3s;
+      }
+      .jellyfish-tentacle:nth-child(3) {
+        left: 35px;
+        height: 35px;
+        animation-delay: 0.6s;
+      }
+      .jellyfish-tentacle:nth-child(4) {
+        left: 45px;
+        height: 42px;
+        animation-delay: 0.9s;
+      }
+
+      @keyframes jellyfishFloat {
+        0% {
+          transform: translateX(-80px) translateY(10vh);
+        }
+        25% {
+          transform: translateX(25vw) translateY(30vh);
+        }
+        50% {
+          transform: translateX(50vw) translateY(15vh);
+        }
+        75% {
+          transform: translateX(75vw) translateY(35vh);
+        }
+        100% {
+          transform: translateX(calc(100vw + 80px)) translateY(20vh);
+        }
+      }
+
+      .heart {
+        position: absolute;
+        font-size: 28px;
+        pointer-events: none;
+        animation: heartFloat 2.5s ease-out forwards;
+        z-index: 20;
+      }
+
+      @keyframes heartFloat {
+        0% {
+          transform: translateY(0) scale(0) rotate(0deg);
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(-50px) scale(1.2) rotate(180deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-120px) scale(0.8) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .sparkle {
+        position: absolute;
+        color: #ffd700;
+        font-size: 20px;
+        pointer-events: none;
+        animation: sparkleFloat 2s ease-out forwards;
+        z-index: 25;
+      }
+
+      @keyframes sparkleFloat {
+        0% {
+          transform: translateY(0) scale(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) scale(1) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      .score-panel {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        padding: 20px;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        z-index: 100;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      }
+
+      .title {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        color: white;
+        font-size: 32px;
+        font-weight: bold;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+        z-index: 100;
+        animation: titleGlow 3s ease-in-out infinite;
+      }
+
+      @keyframes titleGlow {
+        0%,
+        100% {
+          text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7),
+            0 0 20px rgba(135, 206, 235, 0.5);
+        }
+        50% {
+          text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7),
+            0 0 30px rgba(135, 206, 235, 0.8);
+        }
+      }
+
+      .controls {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        gap: 15px;
+        z-index: 100;
+      }
+
+      .control-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .control-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .control-btn:active {
+        transform: translateY(0);
+      }
+
+      .speed-indicator {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 15px;
+        padding: 15px;
+        color: white;
+        font-size: 14px;
+        z-index: 100;
+      }
+
+      .combo-indicator {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 48px;
+        font-weight: bold;
+        color: #ffd700;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+        pointer-events: none;
+        opacity: 0;
+        z-index: 200;
+        animation: comboShow 2s ease-out;
+      }
+
+      @keyframes comboShow {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0);
+        }
+        20% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.2);
+        }
+        80% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.8);
+        }
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #ffd700;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: particleExplode 1s ease-out forwards;
+      }
+
+      @keyframes particleExplode {
+        0% {
+          transform: scale(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Farklı Fok Çeşitleri */
+
+      /* Tip 1: Klasik Gri Fok (varsayılan) */
+      .seal-type-1 .seal-body {
+        background: linear-gradient(
+          135deg,
+          #696969 0%,
+          #a9a9a9 50%,
+          #c0c0c0 100%
+        );
+      }
+      .seal-type-1 .seal-head {
+        background: linear-gradient(
+          135deg,
+          #696969 0%,
+          #a9a9a9 50%,
+          #c0c0c0 100%
+        );
+      }
+      .seal-type-1 .seal-flippers .flipper {
+        background: linear-gradient(135deg, #696969, #a9a9a9);
+      }
+      .seal-type-1 .seal-tail {
+        background: linear-gradient(135deg, #696969, #a9a9a9);
+      }
+      .seal-type-1 .spot {
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      /* Tip 2: Mavi Fok */
+      .seal-type-2 .seal-body {
+        background: linear-gradient(
+          135deg,
+          #4682b4 0%,
+          #87ceeb 50%,
+          #b0e0e6 100%
+        );
+      }
+      .seal-type-2 .seal-head {
+        background: linear-gradient(
+          135deg,
+          #4682b4 0%,
+          #87ceeb 50%,
+          #b0e0e6 100%
+        );
+      }
+      .seal-type-2 .seal-flippers .flipper {
+        background: linear-gradient(135deg, #4682b4, #87ceeb);
+      }
+      .seal-type-2 .seal-tail {
+        background: linear-gradient(135deg, #4682b4, #87ceeb);
+      }
+      .seal-type-2 .spot {
+        background: rgba(25, 25, 112, 0.4);
+      }
+
+      /* Tip 3: Kahverengi Fok */
+      .seal-type-3 .seal-body {
+        background: linear-gradient(
+          135deg,
+          #8b4513 0%,
+          #cd853f 50%,
+          #deb887 100%
+        );
+      }
+      .seal-type-3 .seal-head {
+        background: linear-gradient(
+          135deg,
+          #8b4513 0%,
+          #cd853f 50%,
+          #deb887 100%
+        );
+      }
+      .seal-type-3 .seal-flippers .flipper {
+        background: linear-gradient(135deg, #8b4513, #cd853f);
+      }
+      .seal-type-3 .seal-tail {
+        background: linear-gradient(135deg, #8b4513, #cd853f);
+      }
+      .seal-type-3 .spot {
+        background: rgba(139, 69, 19, 0.5);
+      }
+
+      /* Tip 4: Siyah-Beyaz Fok */
+      .seal-type-4 .seal-body {
+        background: linear-gradient(
+          135deg,
+          #2f2f2f 0%,
+          #5a5a5a 50%,
+          #808080 100%
+        );
+      }
+      .seal-type-4 .seal-head {
+        background: linear-gradient(
+          135deg,
+          #2f2f2f 0%,
+          #5a5a5a 50%,
+          #808080 100%
+        );
+      }
+      .seal-type-4 .seal-flippers .flipper {
+        background: linear-gradient(135deg, #2f2f2f, #5a5a5a);
+      }
+      .seal-type-4 .seal-tail {
+        background: linear-gradient(135deg, #2f2f2f, #5a5a5a);
+      }
+      .seal-type-4 .spot {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Tip 5: Pembe Fok (Albino) */
+      .seal-type-5 .seal-body {
+        background: linear-gradient(
+          135deg,
+          #ffb6c1 0%,
+          #ffc0cb 50%,
+          #ffcccb 100%
+        );
+      }
+      .seal-type-5 .seal-head {
+        background: linear-gradient(
+          135deg,
+          #ffb6c1 0%,
+          #ffc0cb 50%,
+          #ffcccb 100%
+        );
+      }
+      .seal-type-5 .seal-flippers .flipper {
+        background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+      }
+      .seal-type-5 .seal-tail {
+        background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+      }
+      .seal-type-5 .spot {
+        background: rgba(255, 192, 203, 0.4);
+      }
+
+      /* Özel desenler */
+      .seal-type-4 .seal-body::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        width: 50px;
+        height: 25px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+      }
+
+      .seal-type-3 .seal-body::after {
+        content: "";
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        width: 30px;
+        height: 15px;
+        background: rgba(139, 69, 19, 0.3);
+        border-radius: 50%;
+      }
+
+      .seal-type-5 .seal-head::before {
+        content: "";
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        width: 40px;
+        height: 25px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+      }
+
+      // ...existing code...
+    </style>
+  </head>
+  <body>
+    <div class="ocean">
+      <div class="title">🦭 Büyülü Fok Dünyası 🦭</div>
+
+      <div class="score-panel">
+        <div>🐟 Balık: <span id="fishCount">0</span></div>
+        <div>💖 Fok Sevgisi: <span id="sealLove">0</span></div>
+        <div>🎯 Combo: <span id="combo">0</span></div>
+        <div>⭐ Puan: <span id="totalScore">0</span></div>
+      </div>
+
+      <div class="speed-indicator">
+        <div>🌊 Hız: <span id="speedLevel">Normal</span></div>
+        <div>🎮 Seviye: <span id="gameLevel">1</span></div>
+      </div>
+
+      <div class="controls">
+        <button class="control-btn" onclick="toggleSpeed()">⚡ Hız</button>
+        <button class="control-btn" onclick="playOceanSound()">🌊 Ses</button>
+        <button class="control-btn" onclick="resetGame()">🔄 Yenile</button>
+      </div>
+    </div>
+
+    <script>
+      let gameState = {
+        fishCount: 0,
+        sealLove: 0,
+        combo: 0,
+        totalScore: 0,
+        speed: 1,
+        level: 1,
+        lastClickTime: 0,
+        comboTimeout: null,
+        oceanSoundPlaying: false,
+        speedLevel: "Normal",
+      };
+      const audioContext = new (window.AudioContext ||
+        window.webkitAudioContext)();
+      // Fok balığı ses dosyaları
+      const sealSounds = [];
+      for (let i = 1; i <= 8; i++) {
+        sealSounds.push(new Audio(`fok_sesi_${i}.mp3`));
+      }
+
+      // Ses dosyalarını önceden yükle
+      function preloadSounds() {
+        sealSounds.forEach((sound, index) => {
+          sound.preload = "auto";
+          sound.volume = 0.7;
+
+          // Ses dosyası yüklendiğinde
+          sound.addEventListener("canplaythrough", () => {
+            console.log(`Fok sesi ${index + 1} yüklendi`);
+          });
+
+          // Ses dosyası yüklenemediğinde
+          sound.addEventListener("error", (e) => {
+            console.log(`Fok sesi ${index + 1} yüklenemedi:`, e);
+          });
+        });
+      }
+
+      // Diğer ses efektleri için basit tonlar
+      const sounds = {
+        fish: { freq: 440, duration: 0.3, type: "triangle" },
+        jellyfish: { freq: 330, duration: 0.4, type: "sine" },
+        water: { freq: 150, duration: 0.2, type: "sine" },
+        combo: { freq: 880, duration: 0.6, type: "square" },
+      }; // Rastgele fok sesi çal
+      function playRandomSealSound() {
+        try {
+          // Audio context'i kullanıcı etkileşimi ile başlat
+          if (audioContext.state === "suspended") {
+            audioContext.resume();
+          }
+
+          const randomIndex = Math.floor(Math.random() * sealSounds.length);
+          const selectedSound = sealSounds[randomIndex];
+
+          // Ses dosyasını baştan başlat
+          selectedSound.currentTime = 0;
+          selectedSound.volume = 0.7; // Ses seviyesi
+
+          // Ses dosyasını çal
+          const playPromise = selectedSound.play();
+
+          if (playPromise !== undefined) {
+            playPromise.catch((error) => {
+              console.log("Ses çalınamadı:", error);
+              // Eğer ses dosyası çalınamazsa, fallback olarak ton çal
+              playTone({ freq: 220, duration: 0.5, type: "sawtooth" });
+            });
+          }
+        } catch (error) {
+          console.log("Ses dosyası hatası:", error);
+          // Hata durumunda fallback ton çal
+          playTone({ freq: 220, duration: 0.5, type: "sawtooth" });
+        }
+      }
+
+      function playTone(sound) {
+        try {
+          const oscillator = audioContext.createOscillator();
+          const gainNode = audioContext.createGain();
+
+          oscillator.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+
+          oscillator.frequency.value = sound.freq;
+          oscillator.type = sound.type;
+
+          gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(
+            0.01,
+            audioContext.currentTime + sound.duration
+          );
+
+          oscillator.start(audioContext.currentTime);
+          oscillator.stop(audioContext.currentTime + sound.duration);
+        } catch (error) {
+          console.log("Ses tonu çalınamadı:", error);
+        }
+      }
+
+      function updateScore() {
+        document.getElementById("fishCount").textContent = gameState.fishCount;
+        document.getElementById("sealLove").textContent = gameState.sealLove;
+        document.getElementById("combo").textContent = gameState.combo;
+        document.getElementById("totalScore").textContent =
+          gameState.totalScore;
+        document.getElementById("speedLevel").textContent =
+          gameState.speedLevel;
+        document.getElementById("gameLevel").textContent = gameState.level;
+      }
+
+      function showCombo() {
+        if (gameState.combo >= 5) {
+          const comboDiv = document.createElement("div");
+          comboDiv.className = "combo-indicator";
+          comboDiv.textContent = `${gameState.combo}x COMBO! 🔥`;
+          document.body.appendChild(comboDiv);
+
+          playTone(sounds.combo);
+
+          setTimeout(() => {
+            if (comboDiv.parentNode) {
+              comboDiv.parentNode.removeChild(comboDiv);
+            }
+          }, 2000);
+        }
+      }
+
+      function createParticles(x, y, count = 8) {
+        for (let i = 0; i < count; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.left = x + "px";
+          particle.style.top = y + "px";
+
+          const angle = (360 / count) * i;
+          const distance = 50 + Math.random() * 30;
+          const deltaX = Math.cos((angle * Math.PI) / 180) * distance;
+          const deltaY = Math.sin((angle * Math.PI) / 180) * distance;
+
+          particle.style.setProperty("--deltaX", deltaX + "px");
+          particle.style.setProperty("--deltaY", deltaY + "px");
+
+          document.body.appendChild(particle);
+
+          setTimeout(() => {
+            if (particle.parentNode) {
+              particle.parentNode.removeChild(particle);
+            }
+          }, 1000);
+        }
+      }
+
+      function createEnvironment() {
+        const ocean = document.querySelector(".ocean");
+
+        // Deniz yosunları
+        for (let i = 0; i < 12; i++) {
+          const seaweed = document.createElement("div");
+          seaweed.className = "seaweed";
+          seaweed.style.left = Math.random() * 100 + "vw";
+          seaweed.style.height = Math.random() * 80 + 40 + "px";
+          seaweed.style.animationDelay = Math.random() * 3 + "s";
+          ocean.appendChild(seaweed);
+        }
+
+        // Mercanlar
+        for (let i = 0; i < 8; i++) {
+          const coral = document.createElement("div");
+          coral.className = "coral";
+          coral.style.left = Math.random() * 100 + "vw";
+          coral.style.animationDelay = Math.random() * 2 + "s";
+          ocean.appendChild(coral);
+        }
+      }
+
+      function createBubbles() {
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
+        bubble.style.left = Math.random() * 100 + "vw";
+        bubble.style.width = bubble.style.height =
+          Math.random() * 25 + 8 + "px";
+        bubble.style.animationDelay = Math.random() * 2 + "s";
+        bubble.style.animationDuration =
+          (Math.random() * 2 + 3) / gameState.speed + "s";
+
+        document.querySelector(".ocean").appendChild(bubble);
+
+        setTimeout(() => {
+          if (bubble.parentNode) {
+            bubble.parentNode.removeChild(bubble);
+          }
+        }, 4000 / gameState.speed);
+      }
+      function createSeal() {
+        const seal = document.createElement("div");
+
+        // Rastgele fok tipi seç (1-5)
+        const sealType = Math.floor(Math.random() * 5) + 1;
+        seal.className = `seal seal-type-${sealType}`;
+
+        seal.style.top = Math.random() * 50 + 20 + "vh";
+        seal.style.left = "-150px";
+
+        const swimDuration = (Math.random() * 2 + 4) / gameState.speed;
+        seal.style.animation = `sealSwim ${swimDuration}s linear`;
+
+        seal.innerHTML = `
+                <div class="seal-body">
+                    <div class="seal-spots">
+                        <div class="spot"></div>
+                        <div class="spot"></div>
+                        <div class="spot"></div>
+                        <div class="spot"></div>
+                    </div>
+                    <div class="seal-head">
+                        <div class="seal-eyes">
+                            <div class="seal-eye"></div>
+                            <div class="seal-eye"></div>
+                        </div>
+                        <div class="seal-nose"></div>
+                        <div class="seal-mouth"></div>
+                        <div class="seal-whiskers">
+                            <div class="whisker"></div>
+                            <div class="whisker"></div>
+                            <div class="whisker"></div>
+                            <div class="whisker"></div>
+                            <div class="whisker"></div>
+                            <div class="whisker"></div>
+                        </div>
+                    </div>
+                    <div class="seal-flippers">
+                        <div class="flipper"></div>
+                        <div class="flipper"></div>
+                    </div>                    <div class="seal-tail"></div>
+                </div>
+            `;        // Fok balığı tıklama/dokunma fonksiyonu
+        function handleSealInteraction(event) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          const currentTime = Date.now();
+          if (currentTime - gameState.lastClickTime < 2000) {
+            gameState.combo++;
+          } else {
+            gameState.combo = 1;
+          }
+          gameState.lastClickTime = currentTime;
+
+          gameState.sealLove++;
+          gameState.totalScore += 5 * gameState.combo;
+
+          seal.classList.add("happy");
+          setTimeout(() => seal.classList.remove("happy"), 600);
+          
+          // Koordinatları al (dokunma veya tıklama)
+          const x = event.touches ? event.touches[0].clientX : event.clientX;
+          const y = event.touches ? event.touches[0].clientY : event.clientY;
+          
+          createHeart(x, y);
+          createParticles(x, y, 6);
+          playRandomSealSound();
+
+          clearTimeout(gameState.comboTimeout);
+          gameState.comboTimeout = setTimeout(() => {
+            gameState.combo = 0;
+            updateScore();
+          }, 3000);
+
+          showCombo();
+          updateScore();
+        }
+
+        // Hem tıklama hem dokunma event'leri ekle
+        seal.addEventListener("click", handleSealInteraction);
+        seal.addEventListener("touchend", handleSealInteraction);
+
+        document.querySelector(".ocean").appendChild(seal);
+
+        setTimeout(() => {
+          if (seal.parentNode) {
+            seal.parentNode.removeChild(seal);
+          }
+        }, swimDuration * 1000);
+      }
+
+      function createFish() {
+        const fish = document.createElement("div");
+        fish.className = "fish";
+        fish.style.top = Math.random() * 60 + 20 + "vh";
+        fish.style.right = "-50px";
+
+        const swimDuration = (Math.random() * 3 + 5) / gameState.speed;
+        fish.style.animation = `fishSwim ${swimDuration}s linear`;
+
+        fish.innerHTML = `
+                <div class="fish-body">
+                    <div class="fish-eye"></div>
+                    <div class="fish-fin"></div>
+                    <div class="fish-tail"></div>
+                </div>
+            `;
+
+        fish.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          gameState.fishCount++;
+          gameState.totalScore += 3;
+
+          createSparkle(event.clientX, event.clientY);
+          createParticles(event.clientX, event.clientY, 4);
+          playTone(sounds.fish);
+
+          if (fish.parentNode) {
+            fish.parentNode.removeChild(fish);
+          }
+
+          updateScore();
+        });
+
+        document.querySelector(".ocean").appendChild(fish);
+
+        setTimeout(() => {
+          if (fish.parentNode) {
+            fish.parentNode.removeChild(fish);
+          }
+        }, swimDuration * 1000);
+      }
+
+      function createJellyfish() {
+        const jellyfish = document.createElement("div");
+        jellyfish.className = "jellyfish";
+        jellyfish.style.top = Math.random() * 40 + 10 + "vh";
+        jellyfish.style.left = "-80px";
+
+        const floatDuration = (Math.random() * 4 + 8) / gameState.speed;
+        jellyfish.style.animation = `jellyfishFloat ${floatDuration}s linear`;
+
+        jellyfish.innerHTML = `
+                <div class="jellyfish-body"></div>
+                <div class="jellyfish-tentacle"></div>
+                <div class="jellyfish-tentacle"></div>
+                <div class="jellyfish-tentacle"></div>
+                <div class="jellyfish-tentacle"></div>
+            `;
+
+        jellyfish.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          gameState.totalScore += 10;
+
+          createSparkle(event.clientX, event.clientY);
+          createParticles(event.clientX, event.clientY, 8);
+          playTone(sounds.jellyfish);
+
+          if (jellyfish.parentNode) {
+            jellyfish.parentNode.removeChild(jellyfish);
+          }
+
+          updateScore();
+        });
+
+        document.querySelector(".ocean").appendChild(jellyfish);
+
+        setTimeout(() => {
+          if (jellyfish.parentNode) {
+            jellyfish.parentNode.removeChild(jellyfish);
+          }
+        }, floatDuration * 1000);
+      }
+
+      function createHeart(x, y) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.textContent = "💖";
+        heart.style.left = x + "px";
+        heart.style.top = y + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          if (heart.parentNode) {
+            heart.parentNode.removeChild(heart);
+          }
+        }, 2500);
+      }
+
+      function createSparkle(x, y) {
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.textContent = "✨";
+        sparkle.style.left = x + "px";
+        sparkle.style.top = y + "px";
+        document.body.appendChild(sparkle);
+
+        setTimeout(() => {
+          if (sparkle.parentNode) {
+            sparkle.parentNode.removeChild(sparkle);
+          }
+        }, 2000);
+      }
+      function toggleSpeed() {
+        gameState.speed =
+          gameState.speed === 1
+            ? 2
+            : gameState.speed === 2
+            ? 3
+            : gameState.speed === 3
+            ? 0.5
+            : 1; // Yavaş mod eklendi
+        gameState.speedLevel =
+          gameState.speed === 0.5
+            ? "Yavaş"
+            : gameState.speed === 1
+            ? "Normal"
+            : gameState.speed === 2
+            ? "Hızlı"
+            : "Çok Hızlı";
+        updateScore();
+        playTone(sounds.water);
+      }
+
+      function playOceanSound() {
+        if (!gameState.oceanSoundPlaying) {
+          gameState.oceanSoundPlaying = true;
+          const playWaveSound = () => {
+            if (gameState.oceanSoundPlaying) {
+              playTone({ ...sounds.water, freq: 100 + Math.random() * 50 });
+              setTimeout(playWaveSound, 2000 + Math.random() * 3000);
+            }
+          };
+          playWaveSound();
+        } else {
+          gameState.oceanSoundPlaying = false;
+        }
+      }
+
+      function resetGame() {
+        gameState = {
+          fishCount: 0,
+          sealLove: 0,
+          combo: 0,
+          totalScore: 0,
+          speed: 1,
+          level: 1,
+          lastClickTime: 0,
+          comboTimeout: null,
+          oceanSoundPlaying: false,
+          speedLevel: "Normal",
+        };
+        updateScore();
+        playTone(sounds.water);
+      }
+
+      function updateLevel() {
+        const newLevel = Math.floor(gameState.totalScore / 100) + 1;
+        if (newLevel > gameState.level) {
+          gameState.level = newLevel;
+          playTone(sounds.combo);
+        }
+      }
+
+      function gameLoop() {
+        // Balık oluştur
+        if (Math.random() < 0.08 * gameState.speed) {
+          createFish();
+        }
+        // Fok oluştur - Sıklığı hafif artırdım
+        if (Math.random() < 0.05 * gameState.speed) {
+          createSeal();
+        }
+
+        // Denizanası oluştur
+        if (Math.random() < 0.02 * gameState.speed) {
+          createJellyfish();
+        }
+
+        // Baloncuk oluştur
+        if (Math.random() < 0.3) {
+          createBubbles();
+        }
+
+        updateLevel();
+      }
+      // Oyunu başlat
+      window.addEventListener("load", function () {
+        // Ses dosyalarını önceden yükle
+        preloadSounds();
+
+        createEnvironment();
+        updateScore();
+
+        // Ana oyun döngüsü
+        setInterval(gameLoop, 100);
+
+        // Düzenli baloncuk oluşturma
+        setInterval(createBubbles, 800);
+
+        // Arka plan tıklama efekti
+        document.addEventListener("click", function (event) {
+          if (
+            event.target === document.body ||
+            event.target.classList.contains("ocean")
+          ) {
+            createBubbles();
+            playTone(sounds.water);
+          }
+        });
+      });      // Mobil dokunma desteği ve ses aktivasyonu
+      let audioInitialized = false;
+      
+      function initializeAudio() {
+        if (!audioInitialized) {
+          // Ses sistemini aktif hale getir
+          if (audioContext.state === "suspended") {
+            audioContext.resume();
+          }
+          
+          // Ses dosyalarının yüklenmeye başlamasını sağla
+          sealSounds.forEach(sound => {
+            sound.load();
+          });
+          
+          audioInitialized = true;
+          console.log("Ses sistemi aktif edildi (mobil dokunma)");
+        }
+      }
+
+      // İlk dokunmada ses sistemini aktif et
+      document.addEventListener(
+        "touchstart",
+        function (event) {
+          initializeAudio();
+        },
+        { passive: true, once: true }
+      );
+
+      // İlk tıklamada da ses sistemini aktif et
+      document.addEventListener(
+        "click",
+        function (event) {
+          initializeAudio();
+        },
+        { passive: true, once: true }
+      );
+
+      // Touchmove ve benzeri diğer mobil event'lerde preventDefault
+      document.addEventListener(
+        "touchmove",
+        function (event) {
+          // Sadece oyun alanında touchmove'u engelle
+          if (event.target.closest('.seal, .fish, .jellyfish')) {
+            event.preventDefault();
+          }
+        },
+        { passive: false }
+      );
+    </script>
+  </body>
+</html>
